@@ -16,6 +16,8 @@ namespace BlackJack
             List<Card> cardsHand = fromList.CardsInDeck.GetRange(0, cardsToDeal);
             HoldCards.AddRange(cardsHand);
             fromList.CardsInDeck.RemoveRange(0, cardsToDeal);
+
+            // TODO: Build functionallity to verify that deck not run out of cards.
         }
 
 
