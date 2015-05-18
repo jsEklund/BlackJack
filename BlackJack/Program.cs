@@ -15,21 +15,20 @@ namespace BlackJack
             Console.ReadKey();
             Console.WriteLine("...");
 
-            Deck newDeck = new Deck();
-            Hand dealer = new Hand();
-            Hand player = new Hand();
+            Deck DeckCards = new Deck();
+            Hand Dealer = new Hand();
+            Hand Player = new Hand();
 
+            DeckCards.AddDecks(1); // lägg till kortlek för spelet
+
+            // Initial deal
+            for (int i = 0; i < 2; i++)
+            {
             
-            newDeck.AddDecks(1);
+                Player.Deal(DeckCards);
+                Dealer.Deal(DeckCards);
 
-
-
-
-
-
-
-
-//            newDeck.TakeCards(10);
+            }
 
             Console.Write("Wait...");
             Console.ReadKey();

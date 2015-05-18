@@ -8,15 +8,8 @@ namespace BlackJack
 {
     class Deck
     {
-        /*
-        public deck()
-        {
-            this.cards = this.addDescks(1);
-        }
-        */
-        public List<Card> CardsInDeck = new List<Card>();
 
-        
+        public List<Card> CardsInDeck = new List<Card>();
 
         public void AddDecks(int decks)
         {
@@ -58,7 +51,7 @@ namespace BlackJack
             }
             return new Tuple<int, bool>(sumHand, softHand);
         }
-        protected static List<Card> RandomList(List<Card> cardList)
+        protected static List<Card> RandomList(ref List<Card> cardList)
         {
             var randomGenerator = new Random();
             var result = cardList.OrderBy(item => randomGenerator.Next());
@@ -67,24 +60,6 @@ namespace BlackJack
         }
 
         public List<Card> InGameCards = new List<Card>();
-        
-        // public List<card> playedCards = new List<card>();
-
-
-        public List<Card> TakeCards(int cardsToTake = 1)
-        {
-            // TODO: Check if CardsInDeck running out of cards If,  reschuffle used cards
-
-            List<Card> TakenCards = new List<Card>();
-            TakenCards = CardsInDeck.GetRange(0, cardsToTake);
-            CardsInDeck.RemoveRange(0, cardsToTake);
-
-            return TakenCards;
-        }
-
 
     }
-
-
-
 }
