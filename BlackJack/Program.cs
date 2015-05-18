@@ -28,6 +28,8 @@ namespace BlackJack
                 Player.Deal(DeckCards);
                 Dealer.Deal(DeckCards);
 
+                // TODO: Calculate card values
+
             }
 
             Console.Write("Wait...");
