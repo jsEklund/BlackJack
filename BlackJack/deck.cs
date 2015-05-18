@@ -51,7 +51,7 @@ namespace BlackJack
             }
             return new Tuple<int, bool>(sumHand, softHand);
         }
-        protected static List<Card> RandomList(ref List<Card> cardList)
+        protected static List<Card> RandomList(List<Card> cardList)
         {
             var randomGenerator = new Random();
             var result = cardList.OrderBy(item => randomGenerator.Next());
