@@ -13,11 +13,20 @@ namespace BlackJack
 
         public void Deal(Deck fromList, int cardsToDeal = 1)
         {
-            List<Card> cardsHand = fromList.CardsInDeck.GetRange(0, cardsToDeal);
-            HoldCards.AddRange(cardsHand);
-            fromList.CardsInDeck.RemoveRange(0, cardsToDeal);
 
-            // TODO: Build functionallity to verify that deck not run out of cards.
+            // Havn´t yet tried this out...
+            List<Card> cardsHand;
+            if (fromList.CardsInDeck.Count() != 0)
+            {
+                cardsHand = fromList.CardsInDeck.GetRange(0, cardsToDeal);
+                HoldCards.AddRange(cardsHand);
+            } else
+            {
+                Deck.RandomList(fromList.CardsPlayed);
+                cardsHand = fromList.CardsPlayed.GetRange(0, cardsToDeal);
+            }
+
+            fromList.CardsInDeck.RemoveRange(0, cardsToDeal);
         }
 
 

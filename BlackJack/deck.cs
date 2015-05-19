@@ -10,6 +10,7 @@ namespace BlackJack
     {
 
         public List<Card> CardsInDeck = new List<Card>();
+        public List<Card> CardsPlayed = new List<Card>();
 
         public void AddDecks(int decks)
         {
@@ -51,7 +52,7 @@ namespace BlackJack
             }
             return new Tuple<int, bool>(sumHand, softHand);
         }
-        protected static List<Card> RandomList(List<Card> cardList)
+        internal static List<Card> RandomList(List<Card> cardList)
         {
             var randomGenerator = new Random();
             var result = cardList.OrderBy(item => randomGenerator.Next());
@@ -59,7 +60,7 @@ namespace BlackJack
             return result.ToList();
         }
 
-        public List<Card> InGameCards = new List<Card>();
+        
 
     }
 }
