@@ -14,18 +14,18 @@ namespace BlackJack
         public void Deal(Deck fromList, int cardsToDeal = 1)
         {
 
-            // Havn´t yet tried this out...
+            // Maybe this works better...
             List<Card> cardsHand;
-            if (fromList.CardsInDeck.Count() != 0)
-            {
-                cardsHand = fromList.CardsInDeck.GetRange(0, cardsToDeal);
-                HoldCards.AddRange(cardsHand);
-            } else
+
+            if (fromList.CardsInDeck.Count() < cardsToDeal)
             {
                 Deck.RandomList(fromList.CardsPlayed);
-                cardsHand = fromList.CardsPlayed.GetRange(0, cardsToDeal);
+                fromList.CardsInDeck.AddRange(fromList.CardsPlayed);
+                fromList.CardsPlayed.Clear();
             }
 
+            cardsHand = fromList.CardsInDeck.GetRange(0, cardsToDeal);
+            HoldCards.AddRange(cardsHand);
             fromList.CardsInDeck.RemoveRange(0, cardsToDeal);
         }
 
