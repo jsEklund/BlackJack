@@ -17,6 +17,8 @@ namespace BlackJack
             // Maybe this works better...
             List<Card> cardsHand;
 
+            HoldCards.AddRange(  fromList.CardsInDeck.GetRange(0, cardsToDeal)  );
+
             if (fromList.CardsInDeck.Count() < cardsToDeal)
             {
                 Deck.RandomList(fromList.CardsPlayed);
