@@ -56,7 +56,14 @@ namespace BlackJack
                 addSpace.Append(" ");
             }
 
-            addSpace.Insert(spaceBefore, s);
+            if (s.Length <= 80)
+            { 
+                addSpace.Insert(spaceBefore, s);
+            } else
+            {
+                addSpace.Append(s);
+             
+            }
 
             return addSpace.ToString();
         }
