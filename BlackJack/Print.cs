@@ -85,14 +85,25 @@ namespace BlackJack
             {
                 Print.PrintInstructionPage();
             }
+            else if (input.Key == ConsoleKey.P)
+            {
+            }
+
             else
             {
                 Environment.Exit(0);
             }
-
-
         }
 
+        public static void PrintSelectDecks()
+        {
+            Console.Clear();
+            Console.WriteLine(@"
+              Select number of decks:" + "\n");
+
+            Console.WriteLine(Print.CenterText("FOUR DECKS [4]     SIX DECKS [6]     EIGHT DECKS [8]"));
+
+        }
 
 
         public static void PrintInstructionPage()
@@ -120,7 +131,6 @@ namespace BlackJack
 
                # Let the dealer draw additional cards until his or
                  her hand exceeds 21.
-
 
                 " + "\n";
 

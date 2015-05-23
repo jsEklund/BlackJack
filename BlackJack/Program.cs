@@ -32,14 +32,11 @@ namespace BlackJack
                     break;
             }
             */
-            
+
 
             // Instructions page
-            Console.WriteLine(Print.CenterText("BACK [B]     EXIT [Esc]"));
-
-            // Play P > Select decks
-            Console.WriteLine(Print.CenterText("Select number of decks:"));
-            Console.WriteLine(Print.CenterText("FOUR DECKS [4]     SIX DECKS [6]     EIGHT DECKS [8]"));
+            Print.PrintSelectDecks();
+            
             
             // Info page
             // You have selected X decks. Add some details. start | back | exit
