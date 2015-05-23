@@ -13,11 +13,26 @@ namespace BlackJack
         {
 
             // Intro
-            Console.WriteLine(Print.CenterText("Welcome to BlackJack!"));
-            Console.WriteLine();
+            Print.PrintIntroPage();
 
-            // Instructions or play
-            Console.WriteLine(Print.CenterText("INSRTUCTIONS [I]     PLAY [P]     EXIT [Esc]"));
+            /*
+            switch (input.Key)
+            {
+                case ConsoleKey.I:
+                    Print.printInstructionPage();
+                    break;
+                case ConsoleKey.P:
+                    break;
+
+                case ConsoleKey.Escape:
+                    Environment.Exit(0);
+                    break;
+                    
+                default:
+                    break;
+            }
+            */
+            
 
             // Instructions page
             Console.WriteLine(Print.CenterText("BACK [B]     EXIT [Esc]"));

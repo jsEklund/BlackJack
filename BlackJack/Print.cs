@@ -68,15 +68,77 @@ namespace BlackJack
             return addSpace.ToString();
         }
 
-        public static void PrintIntro()
+        public static void PrintIntroPage()
         {
-            string s = "- WELCOME TO BLACKJACK -";
+            Console.Clear();
+            Console.WriteLine(Print.CenterText("Welcome to BlackJack!"));
+            Console.WriteLine();
+            Console.WriteLine("               BlackJack is a card game. Read more in the                       ");
+            Console.WriteLine("               instructions page.                                               ");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine(Print.CenterText("INSRTUCTIONS [i]     PLAY [p]     EXIT [Esc]"));
+
+            var input = Console.ReadKey();
+
+            if (input.Key == ConsoleKey.I)
+            {
+                Print.PrintInstructionPage();
+            }
+            else
+            {
+                Environment.Exit(0);
+            }
+
+
+        }
 
 
 
-            Console.WriteLine(CenterText(s));
+        public static void PrintInstructionPage()
+        {
+            string s = @"
+               ┌───────┐  Blackjack, also known as twenty-one, is
+               │♠A     │  the mostwidely played casino banking
+               │  ┌────┴──┐  game in the world.
+               │  │♠J     │     
+               │  │       │  Blackjack is a comparing card game
+               │  │       │  between a playerand dealer meaning
+               │  │       │  that playerscompete against the
+               └──┤       │  dealer but notagainst any other
+                  │     ♠J│  players.
+
+               It is played with one or more decks of 52 cards.
+               The object of the game is to beat the dealer,
+               which can be done in a number of ways:
+
+               # Get 21 points on the player's first two cards
+                 (called a blackjack), without a dealer blackjack.
+
+               # Reach a final score higher than the dealer
+                 without exceeding 21.
+
+               # Let the dealer draw additional cards until his or
+                 her hand exceeds 21.
 
 
+                " + "\n";
+
+            Console.Clear();
+            Console.Write(s);
+
+            Console.WriteLine(Print.CenterText("BACK [b]     EXIT [Esc]"));
+
+            var input = Console.ReadKey();
+
+            if (input.Key == ConsoleKey.B)
+            {
+                PrintIntroPage();
+            }
+            else
+            {
+                Environment.Exit(0);
+            }
         }
 
         public static void clearCardArea(int rowNr)
