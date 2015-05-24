@@ -14,38 +14,15 @@ namespace BlackJack
 
             // Intro
             Print.PrintIntroPage();
-
-            /*
-            switch (input.Key)
-            {
-                case ConsoleKey.I:
-                    Print.printInstructionPage();
-                    break;
-                case ConsoleKey.P:
-                    break;
-
-                case ConsoleKey.Escape:
-                    Environment.Exit(0);
-                    break;
-                    
-                default:
-                    break;
-            }
-            */
-
-
-            // Instructions page
-            Print.PrintSelectDecks();
             
-            
-            // Info page
-            // You have selected X decks. Add some details. start | back | exit
-
+            // Play
             Deck DeckCards = new Deck();
             Hand Dealer = new Hand();
             Hand Player = new Hand();
 
-            DeckCards.AddDecks(1); // lägg till kortlek för spelet
+            // Add decks
+            Print.AddDecksToGame(DeckCards);
+            
 
             // Initial deal
             for (int i = 0; i < 2; i++)
@@ -58,6 +35,8 @@ namespace BlackJack
 
             }
 
+
+            // Just testing...
             //   Console.Write("Wait...");
 
           //  Print.PrintIntro();

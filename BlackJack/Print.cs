@@ -87,6 +87,7 @@ namespace BlackJack
             }
             else if (input.Key == ConsoleKey.P)
             {
+//                PrintSelectDecks();
             }
 
             else
@@ -94,17 +95,6 @@ namespace BlackJack
                 Environment.Exit(0);
             }
         }
-
-        public static void PrintSelectDecks()
-        {
-            Console.Clear();
-            Console.WriteLine(@"
-              Select number of decks:" + "\n");
-
-            Console.WriteLine(Print.CenterText("FOUR DECKS [4]     SIX DECKS [6]     EIGHT DECKS [8]"));
-
-        }
-
 
         public static void PrintInstructionPage()
         {
@@ -118,6 +108,7 @@ namespace BlackJack
                │  │       │  that playerscompete against the
                └──┤       │  dealer but notagainst any other
                   │     ♠J│  players.
+                  └───────┘
 
                It is played with one or more decks of 52 cards.
                The object of the game is to beat the dealer,
@@ -148,6 +139,44 @@ namespace BlackJack
             else
             {
                 Environment.Exit(0);
+            }
+        }
+
+        public static void AddDecksToGame(Deck deck)
+        {
+            Console.Clear();
+            Console.WriteLine(@"      Select number of decks:" + "\n");
+
+            Console.WriteLine(Print.CenterText("FOUR DECKS [4]     SIX DECKS [6]     EIGHT DECKS [8]      EXIT [ESC]"));
+
+            
+            int input = 0;
+            while (input == 0)
+            {
+                var inputDecks = Console.ReadKey();
+                switch (inputDecks.Key)
+                {
+                    case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
+                        input = 4;
+                        deck.AddDecks(4);
+                        break;
+
+                    case ConsoleKey.D6:
+                    case ConsoleKey.NumPad6:
+                        deck.AddDecks(6);
+                        input = 6;
+                        break;
+
+                    case ConsoleKey.D8:
+                    case ConsoleKey.NumPad8:
+                        input = 8;
+                        deck.AddDecks(8);
+                        break;
+
+                    default:
+                        break;
+                }
             }
         }
 
