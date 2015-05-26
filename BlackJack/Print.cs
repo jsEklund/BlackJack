@@ -5,13 +5,73 @@ namespace BlackJack
 {
     class Print
     {
-
-        public static void PrintToFixedPosition(string character, int posX, int posY)
+        // Under constrution
+        public static void PrintCard(Hand cards, bool isDealer = true)
         {
-            Console.SetCursorPosition(posX, posY);
-            Console.Write(character);
+            // isDealer = position cards horisontaly from: (1,5)
+            var myCards = cards.HoldCards;
+
+            int cardPosX = 1;
+            int cardPosY = 5;            
+            if (isDealer)
+            {
+                for (int i = 0; i < myCards.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        PrintToFixedPosition("┌───────┐", cardPosX, cardPosY);
+                    } else
+                    {
+                        PrintToFixedPosition("┬───────┐", cardPosX, cardPosY);
+                    }
+
+                    PrintToFixedPosition("│♠A     │", cardPosX, cardPosY);
+                    PrintToFixedPosition("│       │", cardPosX, cardPosY);
+                    PrintToFixedPosition("│       │", cardPosX, cardPosY);
+                    PrintToFixedPosition("│       │", cardPosX, cardPosY);
+                    PrintToFixedPosition("│       │", cardPosX, cardPosY);
+                    PrintToFixedPosition("│     ♠A│", cardPosX, cardPosY);
+                    PrintToFixedPosition("└───────┘", cardPosX, cardPosY);
+
+                    cardPosX += i * 4;
+
+                }
+
+                cardPosX = 1;
+                cardPosY = 5;
+
+                
+
+
+            }
+
+            PrintToFixedPosition("", cardPosX, cardPosY);
+            string card = @"
+                    ┌───────┐
+                    │♠A     │
+                    │       │
+                    │       │
+                    │       │
+                    │       │
+                    │     ♠A│
+                    └───────┘ ";
+
+            if (isDealer)
+            {
+                Console.SetCursorPosition(1, 5);
+                Console.WriteLine(card);
+            }
+           // Console.SetCursorPosition(posX, posY);
+            Console.WriteLine(card);
+
         }
 
+        public static void PrintToFixedPosition(string card, int posX, int posY)
+        {
+            Console.SetCursorPosition(posX, posY);
+            Console.Write(card);
+        }
+        /*
         public static void PrintCard(int card, int cardNr)
         {
             bool cardIsFirst = true;
@@ -44,7 +104,7 @@ namespace BlackJack
             PrintToFixedPosition("│       │", cardOffsetX + 5, cardOffsetY + 6);
             PrintToFixedPosition("│     ♠A│", cardOffsetX + 5, cardOffsetY + 7);
             PrintToFixedPosition("└───────┘", cardOffsetX + 5, cardOffsetY + 8);
-        }
+        }*/
 
         public static string CenterText(string s)
         {
@@ -142,6 +202,16 @@ namespace BlackJack
             }
         }
 
+        public static void createGameArea()
+        {
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine("### DEALER AREA ###");
+            Console.SetCursorPosition(15, 3);
+            Console.WriteLine("Dealer has: x");
+            Console.SetCursorPosition(15, 14);
+            Console.WriteLine("#######");
+        }
+
         public static void AddDecksToGame(Deck deck)
         {
             Console.Clear();
@@ -177,15 +247,18 @@ namespace BlackJack
                     default:
                         break;
                 }
+                Console.Clear();
+            //    createGameArea();
             }
         }
 
         public static void clearCardArea(int rowNr)
         {
             StringBuilder blankChar = new StringBuilder();
-            blankChar.Append("");
 
-            for (int i = 0; i < 80; i++)
+            int consoleWidth = Console.WindowWidth;
+
+            for (int i = 0; i < consoleWidth; i++)
             {
                 blankChar.Append(" ");
             }

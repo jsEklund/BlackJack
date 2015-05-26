@@ -14,7 +14,7 @@ namespace BlackJack
 
             // Intro
             Print.PrintIntroPage();
-            
+
             // Play
             Deck DeckCards = new Deck();
             Hand Dealer = new Hand();
@@ -22,14 +22,23 @@ namespace BlackJack
 
             // Add decks
             Print.AddDecksToGame(DeckCards);
-            
+
+
+
+            Print.createGameArea();
 
             // Initial deal
             for (int i = 0; i < 2; i++)
             {
-            
+                // Some testing...
                 Player.Deal(DeckCards);
                 Dealer.Deal(DeckCards);
+                bool dealerPlay = true;
+                List<Card> test;
+                test = Dealer.HoldCards;
+
+
+                //Print.PrintCard(Dealer.HoldCards, dealerPlay);
 
                 // TODO: Calculate card values...
 
