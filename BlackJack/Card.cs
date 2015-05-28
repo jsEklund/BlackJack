@@ -10,6 +10,7 @@ namespace BlackJack
     {
         public Value Value;
         public Suit Suit;
+        public bool isPrinted = false;
 
         public static int CheckCardValue(Card card)
         {

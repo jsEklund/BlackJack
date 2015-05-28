@@ -17,8 +17,8 @@ namespace BlackJack
 
             // Play
             Deck DeckCards = new Deck();
-            Hand Dealer = new Hand();
-            Hand Player = new Hand();
+            Hand Dealer = new Hand(true);
+            Hand Player = new Hand(false);
 
             // Add decks
             Print.AddDecksToGame(DeckCards);
@@ -33,12 +33,11 @@ namespace BlackJack
                 // Some testing...
                 Player.Deal(DeckCards);
                 Dealer.Deal(DeckCards);
-                bool dealerPlay = true;
                 List<Card> test;
                 test = Dealer.HoldCards;
 
 
-                //Print.PrintCard(Dealer.HoldCards, dealerPlay);
+                Print.PrintCard(Dealer);
 
                 // TODO: Calculate card values...
 

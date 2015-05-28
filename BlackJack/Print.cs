@@ -1,69 +1,109 @@
 ﻿using System;
 using System.Text;
+using System.Collections.Generic;
 
 namespace BlackJack
 {
     class Print
     {
-        // Under constrution
-        public static void PrintCard(Hand cards, bool isDealer = true)
-        {
-            // isDealer = position cards horisontaly from: (1,5)
-            var myCards = cards.HoldCards;
 
-            int cardPosX = 1;
-            int cardPosY = 5;            
-            if (isDealer)
+        public static string returnSuit(Card card)
+        {
+            string suit = "";
+
+            switch (card.Suit)
             {
-                for (int i = 0; i < myCards.Count; i++)
+                case Suit.Diamnods:
+                    suit = "♦";
+                    break;
+
+                case Suit.Hearts:
+                    suit = "♥";
+                    break;
+
+                case Suit.Spades:
+                    suit = "♠";
+                    break;
+
+                case Suit.Clubs:
+                    suit = "♣";
+                    break;
+            }
+            return suit;
+        }
+
+        public static string ReturnValue(Card card)
+        {
+            string value;
+
+            switch (card.Value)
+            {
+                case Value.Ace:
+                    value = "A";
+                    break;
+
+                case Value.Jack:
+                    value = "J";
+                    break;
+
+                case Value.Queen:
+                    value = "D";
+                    break;
+
+                case Value.King:
+                    value = "K";
+                    break;
+
+                default:
+                    value = ((int)card.Value).ToString();
+                    break;
+
+            }
+
+           return value;
+        }
+
+        public static void PrintCard(Hand hand)
+        {
+            int cardPosX;// = 1;
+            int cardPosY = 5;
+
+            //if ()
+            {
+                for (int i = 0; i < hand.HoldCards.Count; i++)
                 {
+               //     hand.HoldCards[i].isPrinted;
                     if (i == 0)
                     {
+                        //returnCardValue(hand.HoldCards[i].Suit)
+                        cardPosX = 1;
+
+                        string cardValue = returnSuit(hand.HoldCards[i]) + ReturnValue(hand.HoldCards[i]);
+
                         PrintToFixedPosition("┌───────┐", cardPosX, cardPosY);
-                    } else
+                        PrintToFixedPosition("│" + cardValue + "       │", cardPosX, cardPosY + 1);
+                        PrintToFixedPosition("│       │", cardPosX, cardPosY + 2);
+                        PrintToFixedPosition("│       │", cardPosX, cardPosY + 3);
+                        PrintToFixedPosition("│       │", cardPosX, cardPosY + 4);
+                        PrintToFixedPosition("│       │", cardPosX, cardPosY + 5);
+                        PrintToFixedPosition("│     " + cardValue + "│", cardPosX, cardPosY + 6);
+                        PrintToFixedPosition("└───────┘", cardPosX, cardPosY + 7);
+                    } 
+
+                    else if (i == 1)
                     {
+                        cardPosX = 1 + (i * 1);
                         PrintToFixedPosition("┬───────┐", cardPosX, cardPosY);
+                        PrintToFixedPosition("│♠A     │", cardPosX, cardPosY);
+                        PrintToFixedPosition("│       │", cardPosX, cardPosY);
+                        PrintToFixedPosition("│       │", cardPosX, cardPosY);
+                        PrintToFixedPosition("│       │", cardPosX, cardPosY);
+                        PrintToFixedPosition("│       │", cardPosX, cardPosY);
+                        PrintToFixedPosition("│     ♠A│", cardPosX, cardPosY);
+                        PrintToFixedPosition("└───────┘", cardPosX, cardPosY);
                     }
-
-                    PrintToFixedPosition("│♠A     │", cardPosX, cardPosY);
-                    PrintToFixedPosition("│       │", cardPosX, cardPosY);
-                    PrintToFixedPosition("│       │", cardPosX, cardPosY);
-                    PrintToFixedPosition("│       │", cardPosX, cardPosY);
-                    PrintToFixedPosition("│       │", cardPosX, cardPosY);
-                    PrintToFixedPosition("│     ♠A│", cardPosX, cardPosY);
-                    PrintToFixedPosition("└───────┘", cardPosX, cardPosY);
-
-                    cardPosX += i * 4;
-
                 }
-
-                cardPosX = 1;
-                cardPosY = 5;
-
-                
-
-
             }
-
-            PrintToFixedPosition("", cardPosX, cardPosY);
-            string card = @"
-                    ┌───────┐
-                    │♠A     │
-                    │       │
-                    │       │
-                    │       │
-                    │       │
-                    │     ♠A│
-                    └───────┘ ";
-
-            if (isDealer)
-            {
-                Console.SetCursorPosition(1, 5);
-                Console.WriteLine(card);
-            }
-           // Console.SetCursorPosition(posX, posY);
-            Console.WriteLine(card);
-
         }
 
         public static void PrintToFixedPosition(string card, int posX, int posY)

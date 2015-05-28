@@ -10,6 +10,11 @@ namespace BlackJack
     {
 
         public List<Card> HoldCards = new List<Card>();
+        public bool isDealer;
+        public Hand(bool isDealer)
+        {
+            this.isDealer = isDealer;
+        }
 
         public void Deal(Deck fromList, int cardsToDeal = 1)
         {

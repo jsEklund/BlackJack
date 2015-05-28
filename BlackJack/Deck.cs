@@ -26,7 +26,7 @@ namespace BlackJack
                         CardsInDeck.Add(new Card()
                         {
                             Suit = (Suit)suit,
-                            Value = (Value)value
+                            Value = (Value)value,
                         });
 
                     };
