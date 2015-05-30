@@ -6,167 +6,74 @@ namespace BlackJack
 {
     class Print
     {
-
-        public static string returnSuit(Card card)
+        public static void createGameArea()
         {
-            string suit = "";
-
-            switch (card.Suit)
-            {
-                case Suit.Diamnods:
-                    suit = "♦";
-                    break;
-
-                case Suit.Hearts:
-                    suit = "♥";
-                    break;
-
-                case Suit.Spades:
-                    suit = "♠";
-                    break;
-
-                case Suit.Clubs:
-                    suit = "♣";
-                    break;
-            }
-            return suit;
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine("### DEALER AREA ###");
+            Console.SetCursorPosition(15, 3);
+            Console.WriteLine("Dealer has: x");
+            Console.SetCursorPosition(15, 14);
+            Console.WriteLine("#######");
         }
 
-        public static string ReturnValue(Card card)
+        public static void AddDecksToGame(Deck deck)
         {
-            string value;
+            Console.Clear();
+            Console.WriteLine(@"      Select number of decks:" + "\n");
 
-            switch (card.Value)
+            Console.WriteLine(Print.CenterText("FOUR DECKS [4]     SIX DECKS [6]     EIGHT DECKS [8]      EXIT [ESC]"));
+
+
+            int input = 0;
+            while (input == 0)
             {
-                case Value.Ace:
-                    value = "A";
-                    break;
-
-                case Value.Jack:
-                    value = "J";
-                    break;
-
-                case Value.Queen:
-                    value = "D";
-                    break;
-
-                case Value.King:
-                    value = "K";
-                    break;
-
-                default:
-                    value = ((int)card.Value).ToString();
-                    break;
-
-            }
-
-           return value;
-        }
-
-        public static void PrintCard(Hand hand)
-        {
-            int cardPosX;// = 1;
-            int cardPosY = 5;
-
-            //if ()
-            {
-                for (int i = 0; i < hand.HoldCards.Count; i++)
+                var inputDecks = Console.ReadKey();
+                switch (inputDecks.Key)
                 {
-               //     hand.HoldCards[i].isPrinted;
-                    if (i == 0)
-                    {
-                        //returnCardValue(hand.HoldCards[i].Suit)
-                        cardPosX = 1;
+                    case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
+                        input = 4;
+                        deck.AddDecks(4);
+                        break;
 
-                        string cardValue = returnSuit(hand.HoldCards[i]) + ReturnValue(hand.HoldCards[i]);
+                    case ConsoleKey.D6:
+                    case ConsoleKey.NumPad6:
+                        deck.AddDecks(6);
+                        input = 6;
+                        break;
 
-                        PrintToFixedPosition("┌───────┐", cardPosX, cardPosY);
-                        PrintToFixedPosition("│" + cardValue + "       │", cardPosX, cardPosY + 1);
-                        PrintToFixedPosition("│       │", cardPosX, cardPosY + 2);
-                        PrintToFixedPosition("│       │", cardPosX, cardPosY + 3);
-                        PrintToFixedPosition("│       │", cardPosX, cardPosY + 4);
-                        PrintToFixedPosition("│       │", cardPosX, cardPosY + 5);
-                        PrintToFixedPosition("│     " + cardValue + "│", cardPosX, cardPosY + 6);
-                        PrintToFixedPosition("└───────┘", cardPosX, cardPosY + 7);
-                    } 
+                    case ConsoleKey.D8:
+                    case ConsoleKey.NumPad8:
+                        input = 8;
+                        deck.AddDecks(8);
+                        break;
 
-                    else if (i == 1)
-                    {
-                        cardPosX = 1 + (i * 1);
-                        PrintToFixedPosition("┬───────┐", cardPosX, cardPosY);
-                        PrintToFixedPosition("│♠A     │", cardPosX, cardPosY);
-                        PrintToFixedPosition("│       │", cardPosX, cardPosY);
-                        PrintToFixedPosition("│       │", cardPosX, cardPosY);
-                        PrintToFixedPosition("│       │", cardPosX, cardPosY);
-                        PrintToFixedPosition("│       │", cardPosX, cardPosY);
-                        PrintToFixedPosition("│     ♠A│", cardPosX, cardPosY);
-                        PrintToFixedPosition("└───────┘", cardPosX, cardPosY);
-                    }
+                    default:
+                        break;
                 }
+                Console.Clear();
+                //    createGameArea();
             }
         }
 
-        public static void PrintToFixedPosition(string card, int posX, int posY)
+        public static void clearCardArea(int rowNr)
         {
-            Console.SetCursorPosition(posX, posY);
-            Console.Write(card);
+            StringBuilder blankChar = new StringBuilder();
+
+            int consoleWidth = Console.WindowWidth;
+
+            for (int i = 0; i < consoleWidth; i++)
+            {
+                blankChar.Append(" ");
+            }
+
+            Console.SetCursorPosition(0, rowNr);
+            Console.Write(blankChar);
+            Console.SetCursorPosition(0, rowNr);
+
         }
-        /*
-        public static void PrintCard(int card, int cardNr)
-        {
-            bool cardIsFirst = true;
-            int cardOffsetX = 0;
-            int cardOffsetY = 0;
 
-            if (cardNr != 1)
-            {
-                cardIsFirst = false;
-            }
-
-            for (int i = 0; i < card; i++)
-            {
-
-            }
-
-
-            if (cardIsFirst)
-            {
-                PrintToFixedPosition("┌───────┐", cardOffsetX + 5, cardOffsetY + 2);
-            } else
-            {
-                PrintToFixedPosition("┌────┴──┐", cardOffsetX + 5, cardOffsetY + 2);
-            }
-            
-
-            PrintToFixedPosition("│♠A     │", cardOffsetX + 5, cardOffsetY + 3);
-            PrintToFixedPosition("│       │", cardOffsetX + 5, cardOffsetY + 4);
-            PrintToFixedPosition("│       │", cardOffsetX + 5, cardOffsetY + 5);
-            PrintToFixedPosition("│       │", cardOffsetX + 5, cardOffsetY + 6);
-            PrintToFixedPosition("│     ♠A│", cardOffsetX + 5, cardOffsetY + 7);
-            PrintToFixedPosition("└───────┘", cardOffsetX + 5, cardOffsetY + 8);
-        }*/
-
-        public static string CenterText(string s)
-        {
-            int spaceBefore = (Console.WindowWidth - s.Length) / 2;
-            StringBuilder addSpace = new StringBuilder();
-
-            for (int i = 0; i < 80; i++)
-            {
-                addSpace.Append(" ");
-            }
-
-            if (s.Length <= 80)
-            { 
-                addSpace.Insert(spaceBefore, s);
-            } else
-            {
-                addSpace.Append(s);
-             
-            }
-
-            return addSpace.ToString();
-        }
+        #region Print pages methods
 
         public static void PrintIntroPage()
         {
@@ -187,7 +94,7 @@ namespace BlackJack
             }
             else if (input.Key == ConsoleKey.P)
             {
-//                PrintSelectDecks();
+                //                PrintSelectDecks();
             }
 
             else
@@ -242,117 +149,216 @@ namespace BlackJack
             }
         }
 
-        public static void createGameArea()
+        #endregion
+
+        #region Return card methods
+
+        private static string returnSuit(Card card)
         {
-            Console.SetCursorPosition(0, 0);
-            Console.WriteLine("### DEALER AREA ###");
-            Console.SetCursorPosition(15, 3);
-            Console.WriteLine("Dealer has: x");
-            Console.SetCursorPosition(15, 14);
-            Console.WriteLine("#######");
+            string suit = "";
+
+            switch (card.Suit)
+            {
+                case Suit.Diamnods:
+                    suit = "♦";
+                    break;
+
+                case Suit.Hearts:
+                    suit = "♥";
+                    break;
+
+                case Suit.Spades:
+                    suit = "♠";
+                    break;
+
+                case Suit.Clubs:
+                    suit = "♣";
+                    break;
+            }
+            return suit;
         }
 
-        public static void AddDecksToGame(Deck deck)
+        private static string ReturnValue(Card card)
         {
-            Console.Clear();
-            Console.WriteLine(@"      Select number of decks:" + "\n");
+            string value;
 
-            Console.WriteLine(Print.CenterText("FOUR DECKS [4]     SIX DECKS [6]     EIGHT DECKS [8]      EXIT [ESC]"));
-
-            
-            int input = 0;
-            while (input == 0)
+            switch (card.Value)
             {
-                var inputDecks = Console.ReadKey();
-                switch (inputDecks.Key)
+                case Value.Ace:
+                    value = "A";
+                    break;
+
+                case Value.Jack:
+                    value = "J";
+                    break;
+
+                case Value.Queen:
+                    value = "D";
+                    break;
+
+                case Value.King:
+                    value = "K";
+                    break;
+
+                default:
+                    value = ((int)card.Value).ToString();
+                    break;
+
+            }
+
+            return value;
+        }
+
+        #endregion
+
+
+        public static string CenterText(string s)
+        {
+            int spaceBefore = (Console.WindowWidth - s.Length) / 2;
+            StringBuilder addSpace = new StringBuilder();
+
+            for (int i = 0; i < 80; i++)
+            {
+                addSpace.Append(" ");
+            }
+
+            if (s.Length <= 80)
+            {
+                addSpace.Insert(spaceBefore, s);
+            }
+            else
+            {
+                addSpace.Append(s);
+
+            }
+
+            return addSpace.ToString();
+        }
+
+        #region Print card methods
+
+        public static void PrintCard(Hand hand)
+        {
+            int cardPosX = 1;
+            int cardPosY = 5;
+
+            for (int i = 0; i < hand.HoldCards.Count; i++)
+            {
+                Card card = hand.HoldCards[i];
+                bool isFirst = false;
+
+                if (i == 0)
                 {
-                    case ConsoleKey.D4:
-                    case ConsoleKey.NumPad4:
-                        input = 4;
-                        deck.AddDecks(4);
-                        break;
-
-                    case ConsoleKey.D6:
-                    case ConsoleKey.NumPad6:
-                        deck.AddDecks(6);
-                        input = 6;
-                        break;
-
-                    case ConsoleKey.D8:
-                    case ConsoleKey.NumPad8:
-                        input = 8;
-                        deck.AddDecks(8);
-                        break;
-
-                    default:
-                        break;
+                    isFirst = true;
                 }
-                Console.Clear();
-            //    createGameArea();
+
+                if (hand.isDealer)
+                {
+                    cardPosX = (i * 4) + 1;
+                    cardPosY = 5;
+
+                    PrintToFixedPosition(card, hand.isDealer, isFirst, cardPosX, cardPosY);
+                }
+
+                else
+                {
+                    cardPosX = (i * 3) + 1;
+                    cardPosY = (i * 2) + 17;
+
+                    PrintToFixedPosition(card, hand.isDealer, isFirst, cardPosX, cardPosY);
+                }
+
             }
         }
 
-        public static void clearCardArea(int rowNr)
+        private static void PrintToFixedPosition(Card card, bool isDealer, bool isFirst, int posX, int posY)
         {
-            StringBuilder blankChar = new StringBuilder();
+            string cardValue = ReturnValue(card);
+            string cardSuit = returnSuit(card);
+            string cardString = cardSuit + cardValue;
 
-            int consoleWidth = Console.WindowWidth;
-
-            for (int i = 0; i < consoleWidth; i++)
+            if (isDealer)
             {
-                blankChar.Append(" ");
+                PrintDealerCard(cardString, isFirst, posX, posY);
             }
 
-            Console.SetCursorPosition(0, rowNr);
-            Console.Write(blankChar);
-            Console.SetCursorPosition(0, rowNr);
-
-        }
-
-        public static void clearCardArea()
-        {
-
-        }
-
-        public static void clearCardArea(int fromPosX, int toPosX)
-        {
-
-        }
-
-        public static void clearCardArea(int fromPosX, int fromPosY, int toPosX, int toPosY)
-        {
-
-        }
-
-
-        public static void PrintState(int keypress)
-        {
-            switch (keypress)
+            else
             {
-                // HIT
-                case 1:
-                    //    cards.takeCards(1); // take one more card
-                    Console.WriteLine("One more card");
-                    break;
-
-                // STAND
-                case 2:
-                    Console.WriteLine("You stay");
-                    break;
-
-                // DOUBLE UP
-                case 3:
-                    Console.WriteLine("You duobled");
-                    break;
-
-                // SPLIT
-                case 4:
-                    Console.WriteLine("You splitted");
-                    break;
-
-                    // Create timeout script.
+                PrintPlayerCard(cardString, isFirst, posX, posY);
             }
         }
+
+        private static void PrintDealerCard(string cardValue, bool isFirst, int posX, int posY)
+        {
+            if (isFirst)
+            {
+                PrintCardRow("┌───────┐", posX, posY);
+            }
+            else
+            {
+                PrintCardRow("┬───────┐", posX, posY);
+            }
+
+            PrintCardRow(string.Format("│{0,-3}    │", cardValue), posX, posY + 1);
+
+            PrintCardRow("│       │", posX, posY + 2);
+            PrintCardRow("│       │", posX, posY + 3);
+            PrintCardRow("│       │", posX, posY + 4);
+            PrintCardRow("│       │", posX, posY + 5);
+
+            PrintCardRow(string.Format("│    {0,3}│", cardValue), posX, posY + 6);
+
+            if (isFirst)
+            {
+                PrintCardRow("└───────┘", posX, posY + 7);
+            }
+
+            else
+            {
+                PrintCardRow("┴───────┘", posX, posY + 7);
+            }
+        }
+
+        private static void PrintPlayerCard(string cardValue, bool isFirst, int posX, int posY)
+        {
+            if (isFirst)
+            {
+                PrintCardRow("┌───────┐", posX, posY);
+            }
+
+            else
+            {
+                PrintCardRow("┌────┴──┐", posX, posY);
+            }
+
+            PrintCardRow(string.Format("│{0,-3}    │", cardValue), posX, posY + 1);
+
+            PrintCardRow("│       │", posX, posY + 2);
+            PrintCardRow("│       │", posX, posY + 3);
+            PrintCardRow("│       │", posX, posY + 4);
+
+            if (isFirst)
+            {
+                PrintCardRow("│       │", posX, posY + 5);
+            }
+
+            else
+            {
+                PrintCardRow("┤       │", posX, posY + 5);
+            }
+
+            PrintCardRow(string.Format("│    {0,3}│", cardValue), posX, posY + 6);
+
+            PrintCardRow("└───────┘", posX, posY + 7);
+        }
+
+        private static void PrintCardRow(string s, int posX, int posY)
+        {
+            Console.SetCursorPosition(posX, posY);
+            Console.WriteLine(s);
+        }
+
+        #endregion
 
     }
 }

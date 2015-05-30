@@ -30,32 +30,20 @@ namespace BlackJack
             // Initial deal
             for (int i = 0; i < 2; i++)
             {
-                // Some testing...
                 Player.Deal(DeckCards);
                 Dealer.Deal(DeckCards);
-                List<Card> test;
-                test = Dealer.HoldCards;
 
 
-                Print.PrintCard(Dealer);
+                
 
                 // TODO: Calculate card values...
 
             }
+            //  Dealer.Deal(DeckCards);
 
 
-            // Just testing...
-            //   Console.Write("Wait...");
-
-          //  Print.PrintIntro();
-
-          //  Print.PrintCard(1, 2);
-            
-          //  Console.WriteLine("new row");
-
-          //  Console.SetCursorPosition(30, 40);
-
-            //   Print.clearCardArea(10);
+            Print.PrintCard(Dealer);
+            Print.PrintCard(Player);
 
             Console.Read();
 

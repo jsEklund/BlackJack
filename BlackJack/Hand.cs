@@ -25,6 +25,12 @@ namespace BlackJack
                 Deck.RandomList(fromList.CardsPlayed);
                 fromList.CardsInDeck.AddRange(fromList.CardsPlayed);
                 fromList.CardsPlayed.Clear();
+
+                // Ok?
+                for (int i = 0; i < fromList.CardsPlayed.Count; i++)
+                {
+                        fromList.CardsPlayed[i].isPrinted = false;
+                }
             }
 
             cardsHand = fromList.CardsInDeck.GetRange(0, cardsToDeal);
