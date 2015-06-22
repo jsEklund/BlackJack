@@ -33,9 +33,6 @@ namespace BlackJack
                 Player.Deal(DeckCards);
                 Dealer.Deal(DeckCards);
 
-
-                
-
                 // TODO: Calculate card values...
 
             }
@@ -45,9 +42,11 @@ namespace BlackJack
             Print.PrintCard(Dealer);
             Print.PrintCard(Player);
 
+            Print.PrintOptions();
+
             Console.Read();
 
-
+            
 
         }
 

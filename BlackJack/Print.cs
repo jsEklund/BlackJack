@@ -6,14 +6,13 @@ namespace BlackJack
 {
     class Print
     {
+
         public static void createGameArea()
         {
-            Console.SetCursorPosition(0, 0);
-            Console.WriteLine("### DEALER AREA ###");
             Console.SetCursorPosition(15, 3);
             Console.WriteLine("Dealer has: x");
             Console.SetCursorPosition(15, 14);
-            Console.WriteLine("#######");
+            Console.WriteLine("You have: y");
         }
 
         public static void AddDecksToGame(Deck deck)
@@ -23,28 +22,21 @@ namespace BlackJack
 
             Console.WriteLine(Print.CenterText("FOUR DECKS [4]     SIX DECKS [6]     EIGHT DECKS [8]      EXIT [ESC]"));
 
-
-            int input = 0;
-            while (input == 0)
-            {
                 var inputDecks = Console.ReadKey();
                 switch (inputDecks.Key)
                 {
                     case ConsoleKey.D4:
                     case ConsoleKey.NumPad4:
-                        input = 4;
                         deck.AddDecks(4);
                         break;
 
                     case ConsoleKey.D6:
                     case ConsoleKey.NumPad6:
                         deck.AddDecks(6);
-                        input = 6;
                         break;
 
                     case ConsoleKey.D8:
                     case ConsoleKey.NumPad8:
-                        input = 8;
                         deck.AddDecks(8);
                         break;
 
@@ -52,8 +44,6 @@ namespace BlackJack
                         break;
                 }
                 Console.Clear();
-                //    createGameArea();
-            }
         }
 
         public static void clearCardArea(int rowNr)
@@ -147,6 +137,38 @@ namespace BlackJack
             {
                 Environment.Exit(0);
             }
+        }
+
+
+        public static void PrintOptions()
+        {
+            Console.SetCursorPosition(0, 40);
+            Console.WriteLine(CenterText("HIT [h]     STAND [s]"));
+
+            Console.SetCursorPosition(10, 40);
+            var input = Console.ReadKey();
+
+            switch (input.Key)
+            {
+                case ConsoleKey.H:
+                    Console.SetCursorPosition(10, 40);
+                    Console.Write(CenterText("You selected: \"hit\""));
+                    Console.SetCursorPosition(10, 50);
+
+                    // Repeat;
+                    PrintOptions();
+                    break;
+
+                case ConsoleKey.S:
+                    Console.SetCursorPosition(10, 40);
+                    Console.Write(CenterText("You selected: \"Stand\""));
+                    Console.SetCursorPosition(10, 50);
+                    break;
+
+                default:
+                    break;
+            }
+            
         }
 
         #endregion
