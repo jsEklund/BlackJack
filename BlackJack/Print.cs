@@ -144,31 +144,6 @@ namespace BlackJack
         {
             Console.SetCursorPosition(0, 40);
             Console.WriteLine(CenterText("HIT [h]     STAND [s]"));
-
-            Console.SetCursorPosition(10, 40);
-            var input = Console.ReadKey();
-
-            switch (input.Key)
-            {
-                case ConsoleKey.H:
-                    Console.SetCursorPosition(10, 40);
-                    Console.Write(CenterText("You selected: \"hit\""));
-                    Console.SetCursorPosition(10, 50);
-
-                    // Repeat;
-                    PrintOptions();
-                    break;
-
-                case ConsoleKey.S:
-                    Console.SetCursorPosition(10, 40);
-                    Console.Write(CenterText("You selected: \"Stand\""));
-                    Console.SetCursorPosition(10, 50);
-                    break;
-
-                default:
-                    break;
-            }
-            
         }
 
         #endregion

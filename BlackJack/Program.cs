@@ -36,17 +36,43 @@ namespace BlackJack
                 // TODO: Calculate card values...
 
             }
-            //  Dealer.Deal(DeckCards);
-
 
             Print.PrintCard(Dealer);
             Print.PrintCard(Player);
 
             Print.PrintOptions();
+            
+            bool playersTurn = true;
+
+            // Player loop
+            while (playersTurn)
+            {
+                var input = Console.ReadKey();
+                Print.clearCardArea(42);
+
+                switch (input.Key)
+                {
+                    // Hit
+                    case ConsoleKey.H:
+                        Player.Deal(DeckCards);
+                        Print.PrintCard(Player);
+                        Print.PrintOptions();
+                        continue;
+
+                    // Stand
+                    case ConsoleKey.S:
+                        playersTurn = false;
+                        break;
+                    
+                    default:
+                        Print.PrintOptions();
+                        break;
+                }
+            }
+
+            // Dealer loop
 
             Console.Read();
-
-            
 
         }
 
