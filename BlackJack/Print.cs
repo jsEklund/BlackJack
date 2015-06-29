@@ -41,6 +41,7 @@ namespace BlackJack
                         break;
 
                     default:
+                        AddDecksToGame(deck);
                         break;
                 }
                 Console.Clear();
