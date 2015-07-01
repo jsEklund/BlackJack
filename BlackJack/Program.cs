@@ -23,8 +23,7 @@ namespace BlackJack
             // Add decks
             Print.AddDecksToGame(DeckCards);
 
-
-
+            // Print game area
             Print.createGameArea();
 
             // Initial deal
@@ -32,20 +31,17 @@ namespace BlackJack
             {
                 Player.Deal(DeckCards);
                 Dealer.Deal(DeckCards);
-
-                // TODO: Calculate card values...
-
             }
 
+            // Print cards
             Print.PrintCard(Dealer);
             Print.PrintCard(Player);
 
+            // Select what to do
             Print.PrintOptions();
-            
-            bool playersTurn = true;
 
             // Player loop
-            while (playersTurn)
+            while (Player.Sum < 21)
             {
                 var input = Console.ReadKey();
                 Print.clearCardArea(42);
@@ -61,9 +57,9 @@ namespace BlackJack
 
                     // Stand
                     case ConsoleKey.S:
-                        playersTurn = false;
                         break;
                     
+                    // Retry
                     default:
                         Print.PrintOptions();
                         break;
@@ -71,7 +67,30 @@ namespace BlackJack
             }
 
             // Dealer loop
+            while (Dealer.Sum <= 17)
+            {
+                if (Dealer.Sum < 17)
+                {
+                    // Deal;
+                    Dealer.Deal(DeckCards);
+                    Print.PrintCard(Dealer);
+                }
 
+                else if (Dealer.Sum <= 21)
+                {
+                    // Stand;
+                    Console.WriteLine("Stand");
+                    break;
+                }
+
+                else
+                {
+                    // Busted;
+                    Console.WriteLine("Busted");
+                    break;
+                }
+            }
+            
             Console.Read();
 
         }

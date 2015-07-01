@@ -11,6 +11,14 @@ namespace BlackJack
 
         public List<Card> HoldCards = new List<Card>();
         public bool isDealer;
+        public int Sum
+        {
+            get
+            {
+                return this.CalculateSum();
+            }
+        }
+
         public Hand(bool isDealer)
         {
             this.isDealer = isDealer;
@@ -26,7 +34,6 @@ namespace BlackJack
                 fromList.CardsInDeck.AddRange(fromList.CardsPlayed);
                 fromList.CardsPlayed.Clear();
 
-                // Ok?
                 for (int i = 0; i < fromList.CardsPlayed.Count; i++)
                 {
                         fromList.CardsPlayed[i].isPrinted = false;
@@ -37,6 +44,27 @@ namespace BlackJack
             HoldCards.AddRange(cardsHand);
             fromList.CardsInDeck.RemoveRange(0, cardsToDeal);
         }
+        
+        public int CalculateSum()
+        {
+
+            var hand = this.HoldCards;
+            var sum = 0;
+
+            for (int i = 0; i < hand.Count(); i++)
+            {
+                int card = (int)hand[i].Value;
+                sum += card;
+
+                if (card == 1)
+                {
+                    sum += card + 10;
+                }
+            }
+
+            return sum;
+        }
+
 
 
     }

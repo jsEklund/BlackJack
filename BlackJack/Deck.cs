@@ -36,22 +36,6 @@ namespace BlackJack
             //cards = randomList(cardList);
         }
 
-        public static Tuple<int, bool> CalculateCards(List<Card> hand)
-        {
-            int sumHand = 0;
-            bool softHand = false;
-
-            for (int i = 0; i < hand.Count; i++)
-            {
-                sumHand += Card.CheckCardValue(hand[i]);
-
-                if (hand[i].Value == Value.Ace)
-                {
-                    softHand = true;
-                }
-            }
-            return new Tuple<int, bool>(sumHand, softHand);
-        }
         internal static List<Card> RandomList(List<Card> cardList)
         {
             var randomGenerator = new Random();
