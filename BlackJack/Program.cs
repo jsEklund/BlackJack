@@ -41,9 +41,18 @@ namespace BlackJack
             Print.PrintOptions();
 
             // Player loop
-            while (Player.Sum < 21)
+            bool playerStand = false;
+            while (Player.Sum()  < 21 && playerStand == false)
             {
+                Console.SetCursorPosition(0, 3);
+                Console.WriteLine("You have " + Player.Sum());
+
+                Console.SetCursorPosition(0, 15);
+                Console.WriteLine("Dealer have " + Dealer.Sum());
+
                 var input = Console.ReadKey();
+                
+
                 Print.clearCardArea(42);
 
                 switch (input.Key)
@@ -57,6 +66,7 @@ namespace BlackJack
 
                     // Stand
                     case ConsoleKey.S:
+                        playerStand = true;
                         break;
                     
                     // Retry
@@ -67,30 +77,36 @@ namespace BlackJack
             }
 
             // Dealer loop
-            while (Dealer.Sum <= 17)
+            while (Dealer.Sum() <= 17)
             {
-                if (Dealer.Sum < 17)
+                Console.SetCursorPosition(0, 15);
+                Console.WriteLine("Dealer have " + Dealer.Sum());
+
+                if (Dealer.Sum() < 17)
                 {
-                    // Deal;
                     Dealer.Deal(DeckCards);
                     Print.PrintCard(Dealer);
                 }
-
-                else if (Dealer.Sum <= 21)
-                {
-                    // Stand;
-                    Console.WriteLine("Stand");
-                    break;
-                }
-
-                else
-                {
-                    // Busted;
-                    Console.WriteLine("Busted");
-                    break;
-                }
             }
-            
+
+            // result
+            var dealerTotal = Dealer.Sum();
+            var playerTotal = Player.Sum();
+            var result = "";
+
+            if (
+                Dealer.IsBlackjack() || Player.IsBusted() || playerTotal > dealerTotal)
+            {
+                result = "Dealer win";
+            } else if (dealerTotal == playerTotal)
+            {
+                result = "Push";
+            } else
+            {
+                result = "Player win";
+            }
+
+            Console.WriteLine(result);
             Console.Read();
 
         }

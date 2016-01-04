@@ -10,9 +10,7 @@ namespace BlackJack
         public static void createGameArea()
         {
             Console.SetCursorPosition(15, 3);
-            Console.WriteLine("Dealer has: x");
             Console.SetCursorPosition(15, 14);
-            Console.WriteLine("You have: y");
         }
 
         public static void AddDecksToGame(Deck deck)
@@ -143,7 +141,7 @@ namespace BlackJack
 
         public static void PrintOptions()
         {
-            Console.SetCursorPosition(0, 40);
+            Console.SetCursorPosition(0, 13);
             Console.WriteLine(CenterText("HIT [h]     STAND [s]"));
         }
 

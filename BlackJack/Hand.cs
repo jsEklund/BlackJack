@@ -11,13 +11,10 @@ namespace BlackJack
 
         public List<Card> HoldCards = new List<Card>();
         public bool isDealer;
-        public int Sum
-        {
-            get
-            {
-                return this.CalculateSum();
-            }
-        }
+        /*private Hand myHand;*/
+
+      //  public int Sum;
+        
 
         public Hand(bool isDealer)
         {
@@ -43,31 +40,63 @@ namespace BlackJack
             cardsHand = fromList.CardsInDeck.GetRange(0, cardsToDeal);
             HoldCards.AddRange(cardsHand);
             fromList.CardsInDeck.RemoveRange(0, cardsToDeal);
+
+            Sum(cardsHand);
         }
         
-        public int CalculateSum()
+        /*
+        public bool IsSoftHand()
         {
-
+            var softHand = false;
             var hand = this.HoldCards;
-            var sum = 0;
 
             for (int i = 0; i < hand.Count(); i++)
             {
-                int card = (int)hand[i].Value;
-                sum += card;
 
-                if (card == 1)
-                {
-                    sum += card + 10;
-                }
+            }
+                return true;
+        }     
+        */
+            
+        public int Sum(List<Card> hand)
+        {
+            var thisHand = hand;
+            var totalSum = 0;
+
+            for (int i = 0; i < thisHand.Count(); i++)
+            {
+                totalSum += (int)thisHand[i].Value;
             }
 
-            return sum;
+            return totalSum;
         }
 
+        public int Sum()
+        {
+            return Sum(HoldCards);
+        }
 
+        public bool IsBusted()
+        {
+            if (Sum() > 21)
+            {
+                return true;
+            }
 
+            return false;
+        }
+
+        public bool IsBlackjack()
+        {
+            if (Sum(HoldCards) == 21 && HoldCards.Count() == 2)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
     }
-
-    
 }

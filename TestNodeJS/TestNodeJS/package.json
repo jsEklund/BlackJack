@@ -1,0 +1,14 @@
+{
+  "name": "TestNodeJS",
+  "version": "0.0.0",
+  "description": "TestNodeJS",
+  "main": "server.js",
+  "author": {
+    "name": "Peter",
+    "email": ""
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}
